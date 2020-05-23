@@ -1,0 +1,7 @@
+<Project>
+  <ItemGroup>
+    <PackageReference Include="System.Maui" Version="$(XamarinFormsVersion)">
+    </PackageReference>
+    <ProjectReference Include="..\System.Maui.CustomAttributes\System.Maui.CustomAttributes.csproj" />
+  </ItemGroup>
+</Project>

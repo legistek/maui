@@ -17,6 +17,7 @@ using System.Maui.StyleSheets;
 [assembly: InternalsVisibleTo("System.Maui.UITests")]
 [assembly: InternalsVisibleTo("System.Maui.FlexLayout.UnitTests")]
 [assembly: InternalsVisibleTo("System.Maui.Material")]
+[assembly: InternalsVisibleTo("System.Maui.Presentation")]
 
 [assembly: InternalsVisibleTo("System.Maui.Core.iOS.UITests")]
 [assembly: InternalsVisibleTo("System.Maui.Core.Android.UITests")]

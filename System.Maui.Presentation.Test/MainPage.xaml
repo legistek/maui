@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pres="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             x:Name="_page"
+             x:Class="TestApp.MainPage">
+
+    <StackLayout Orientation="Vertical">
+
+        <Grid BackgroundColor="Purple">
+            <pres:Border BackgroundColor="Red"                
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                         HeightRequest="100">
+
+                <pres:Border BackgroundColor="Green"
+                             VerticalOptions="Center">
+
+                    <pres:TextBlock  Text="Welcome to Xamarin.Forms! (TextBlock)" 
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="CenterAndExpand" />
+                </pres:Border>
+
+            </pres:Border>
+        </Grid>
+
+        <pres:TextBlock  Text="Welcome to Xamarin.Forms! (TextBlock)" 
+                         HorizontalOptions="Center"
+                         VerticalOptions="CenterAndExpand" />
+
+       
+        <StackLayout Orientation="Horizontal">
+            <pres:Button Content="Add Person"
+                         Command="{Binding AddPersonCommand}"/>
+            <pres:Button Content="Remove Person"
+                         Command="{Binding RemovePersonCommand}"/>
+        </StackLayout>
+
+        <pres:ItemsControl ItemsSource="{Binding People}">
+            <pres:ItemsControl.Template>
+                <ControlTemplate>
+                    <pres:Border BackgroundColor="Red"
+                                 BorderThickness="1"
+                                 BorderBrush="Green">
+                        <StackLayout Orientation="Vertical"
+                                     HeightRequest="300"
+                                     pres:ItemsControl.IsItemsHost="True"/>
+                    </pres:Border>
+                </ControlTemplate>
+            </pres:ItemsControl.Template>
+            <pres:ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding}"/>
+                </DataTemplate>
+            </pres:ItemsControl.ItemTemplate>
+        </pres:ItemsControl>
+
+    </StackLayout>
+
+</ContentPage>
