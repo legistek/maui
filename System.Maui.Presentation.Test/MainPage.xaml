@@ -7,15 +7,33 @@
 
     <ContentPage.Resources>
         <ControlTemplate x:Key="ButtonTemplate">
-            <pres:Border BackgroundColor="Orange">
-                <!--<pres:ContentPresenter Content="{TemplateBinding Content}"/>-->
-                <pres:TextBlock Text="{TemplateBinding Content}"/>
+            <pres:Border BackgroundColor="Orange"
+                         BorderBrush="Green"
+                         BorderThickness="2">
+                <pres:ContentPresenter Content="{TemplateBinding Content}"/>
             </pres:Border>
         </ControlTemplate>
+
+        <Style TargetType="pres:ContentControl">
+            <Setter Property="HorizontalContentAlignment" Value="Start"/>
+            <Setter Property="VerticalContentAlignment" Value="Start"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <pres:ContentPresenter x:Name="PART_Content"
+                                               Content="{TemplateBinding Content}"
+                                               Margin="{TemplateBinding Padding}"
+                                               ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </ContentPage.Resources>
     
     <StackLayout Orientation="Vertical">
 
+        <!--
         <Grid BackgroundColor="Purple">
             <pres:Border BackgroundColor="Red"                
                          HorizontalOptions="Center"
@@ -37,7 +55,7 @@
                          HorizontalOptions="Center"
                          VerticalOptions="CenterAndExpand" />
 
-       
+       -->
         <StackLayout Orientation="Horizontal">
             <pres:Button Content="Add Person"
                          Template="{StaticResource ButtonTemplate}"
@@ -55,13 +73,15 @@
                                  BorderBrush="Green">
                         <StackLayout Orientation="Vertical"
                                      HeightRequest="300"
+                                     BackgroundColor="Bisque"
                                      pres:ItemsControl.IsItemsHost="True"/>
                     </pres:Border>
                 </ControlTemplate>
             </pres:ItemsControl.Template>
             <pres:ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <pres:TextBlock Text="{Binding}"/>
+                    <pres:TextBlock Text="{Binding}"
+                                    BackgroundColor="AliceBlue"/>
                 </DataTemplate>
             </pres:ItemsControl.ItemTemplate>
         </pres:ItemsControl>
