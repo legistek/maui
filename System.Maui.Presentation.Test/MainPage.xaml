@@ -5,6 +5,15 @@
              x:Name="_page"
              x:Class="TestApp.MainPage">
 
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="ButtonTemplate">
+            <pres:Border BackgroundColor="Orange">
+                <!--<pres:ContentPresenter Content="{TemplateBinding Content}"/>-->
+                <pres:TextBlock Text="{TemplateBinding Content}"/>
+            </pres:Border>
+        </ControlTemplate>
+    </ContentPage.Resources>
+    
     <StackLayout Orientation="Vertical">
 
         <Grid BackgroundColor="Purple">
@@ -31,8 +40,10 @@
        
         <StackLayout Orientation="Horizontal">
             <pres:Button Content="Add Person"
+                         Template="{StaticResource ButtonTemplate}"
                          Command="{Binding AddPersonCommand}"/>
             <pres:Button Content="Remove Person"
+                         Template="{StaticResource ButtonTemplate}"
                          Command="{Binding RemovePersonCommand}"/>
         </StackLayout>
 
@@ -50,7 +61,7 @@
             </pres:ItemsControl.Template>
             <pres:ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding}"/>
+                    <pres:TextBlock Text="{Binding}"/>
                 </DataTemplate>
             </pres:ItemsControl.ItemTemplate>
         </pres:ItemsControl>

@@ -12,6 +12,9 @@ namespace TestApp
 			System.Maui.Presentation.Framework.Initialize();
 			InitializeComponent();
 			MainPage = new MainPage();
+			int a = 1;
+			a = 5 + 5;
+			Math.Max(a, 1);
 		}
 
 		protected override void OnStart()

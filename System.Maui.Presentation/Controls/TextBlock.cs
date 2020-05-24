@@ -101,15 +101,8 @@ namespace System.Maui.Presentation.Controls
 
 		protected override SizeRequest MeasureOverride(double widthConstraint, double heightConstraint)
 		{
-			//var sr = base.OnMeasure(widthConstraint, heightConstraint);
-			//return sr;
 			var sz = Device.PlatformServices.GetNativeSize(this, widthConstraint, heightConstraint);
 			return sz;
-		}
-
-		protected override void LayoutChildren(double x, double y, double width, double height)
-		{
-			base.LayoutChildren(x, y, width, height);
 		}
 	}
 }

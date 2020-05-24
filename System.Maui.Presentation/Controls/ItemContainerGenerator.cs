@@ -1860,16 +1860,16 @@ namespace System.Maui.Presentation.Controls
 		void PrepareGrouping()
 		{
 			GroupStyle groupStyle;
-			IList items = null;
+			IList items;
 
 			if (Level == 0)
 			{
 				//groupStyle = Host.GetGroupStyle(null, 0);
 
 				//if (groupStyle == null)
-				//{
-				//	items = Host.View;
-				//}
+				{
+					items = Host.View;
+				}
 				//else
 				//{
 				//	CollectionView cv = Host.View.CollectionView;

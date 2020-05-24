@@ -16,7 +16,7 @@ namespace System.Maui.Presentation
 	///     Allows management of RoutedEvents
 	/// </summary>
 	/// <ExternalAPI/>
-	public static class EventManager
+	public static class EventManager 
 	{
 		#region External API
 

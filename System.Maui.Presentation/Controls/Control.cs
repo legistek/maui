@@ -15,7 +15,7 @@ namespace System.Maui.Presentation.Controls
 			"Template",
 			typeof(ControlTemplate),
 			typeof(Control),
-			null);
+			propertyChanged: TemplateUtilities.OnControlTemplateChanged);
 		public ControlTemplate Template
 		{
 			get
@@ -356,7 +356,10 @@ namespace System.Maui.Presentation.Controls
 		protected override void OnParentSet()
 		{
 			base.OnParentSet();
+			this.IsInitialized = true;
+			OnPreApplyTemplate();
 			ApplyTemplate();
+			OnAncestorChanged();
 		}
 
 		protected override void OnApplyTemplate()
@@ -365,11 +368,15 @@ namespace System.Maui.Presentation.Controls
 
 		protected override SizeRequest MeasureOverride(double widthConstraint, double heightConstraint)
 		{
-			double widthRequest = WidthRequest;
-			double heightRequest = HeightRequest;
+			double widthRequest = widthConstraint;
+			double heightRequest = heightConstraint;
 			var childRequest = new SizeRequest();
 
-			if ((widthRequest == -1 || heightRequest == -1) && InternalChild != null)
+			if ((widthRequest == -1 ||
+				double.IsInfinity(widthRequest) ||
+				heightRequest == -1 ||
+				double.IsInfinity(heightRequest))								
+				&& InternalChild != null)
 			{
 				childRequest = InternalChild.Measure(widthConstraint, heightConstraint, MeasureFlags.IncludeMargins);
 			}
@@ -378,8 +385,8 @@ namespace System.Maui.Presentation.Controls
 			{
 				Request = new Size
 				{ 
-					Width = widthRequest != -1 ? widthRequest : childRequest.Request.Width, 
-					Height = heightRequest != -1 ? heightRequest : childRequest.Request.Height 
+					Width = widthRequest != -1 && !double.IsInfinity(widthRequest) ? widthRequest : childRequest.Request.Width, 
+					Height = heightRequest != -1 && !double.IsInfinity(heightRequest) ? heightRequest : childRequest.Request.Height 
 				},
 				Minimum = childRequest.Minimum
 			};
